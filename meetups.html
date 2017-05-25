@@ -1,0 +1,19 @@
+---
+layout: default
+title: AFUP Montpellier - organisateur de meetups PHP à Montpellier
+---
+
+<div class="home" id="home">
+  <h1 class="pageTitle">Les meetups</h1>
+  <ul class="posts noList">
+
+    {% assign sorted_meetups = (site.meetups | sort: 'date') | reverse %}
+    {% for meetup in sorted_meetups %}
+      <li>
+        <h3><a class="post-link" href="{{ meetup.url | prepend: site.baseurl }}">{{ meetup.title }}</a></h3>
+        <strong>{{ meetup.date | date: '%d %B %Y %H:%M' }}</strong>
+        <p class="description">{% if meetup.description %}{{ meetup.description | strip_html | strip_newlines | truncate: 250 }}{% else %}{{ meetup.content | strip_html | strip_newlines | truncate: 250 }}{% endif %}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
